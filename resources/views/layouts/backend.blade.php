@@ -155,7 +155,14 @@
                 </li>
             @endif
 
-
+            @if (account()->role == 'superadmin' || account()->role == 'lecture')
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="{{ route('course.index') }}">
+                        <i class='bx bx-layer'></i>
+                        <span>Course</span>
+                    </a>
+                </li>
+            @endif
         </ul>
 
     </aside><!-- End Sidebar-->

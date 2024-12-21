@@ -4,7 +4,7 @@
 
     <section class="section card shadow p-3">
         <div class="mb-3">
-            <a class="btn btn-primary" href="{{ route('category.create') }}" role="button">Create</a>
+            <a class="btn btn-primary" href="{{ route('course.create') }}" role="button">Create</a>
         </div>
 
         <div class="table-responsive">
@@ -12,27 +12,32 @@
                 <thead>
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Icon</th>
                         <th scope="col">Name</th>
-                        <th scope="col">Slug</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Category</th>
+                        @if (account()->role == 'superadmin')
+                            <th scope="col">Lecture</th>
+                        @endif
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody>
 
-                    @foreach ($categories as $category)
+                    @foreach ($courses as $course)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
-                            <td><img src="{{ asset('storage/' . $category->icon) }}" alt="" width="50"></td>
-                            <td>{{ $category->name }}</td>
-                            <td>{{ $category->slug }}</td>
+                            <td>{{ $course->name }}</td>
+                            <td>{{ number_format($course->price) }}</td>
+                            <td>{{ $course->category->name }}</td>
+                            @if (account()->role == 'superadmin')
+                                <td>{{ $course->user->name }}</td>
+                            @endif
                             <td>
-                                <a href="{{ route('category.edit', $category) }}" class="btn btn-warning">
+                                <a href="{{ route('course.edit', $course) }}" class="btn btn-warning">
                                     <i class='bx bx-edit'></i>
                                 </a>
                                 <button type="button" class="btn btn-danger btn-delete" data-bs-toggle="modal"
-                                    data-bs-target="#deleteModal"
-                                    data-route="{{ route('category.destroy', $category) }}">
+                                    data-bs-target="#deleteModal" data-route="{{ route('course.destroy', $course) }}">
                                     <i class='bx bx-trash'></i>
                                 </button>
                             </td>

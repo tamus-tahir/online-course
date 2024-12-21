@@ -82,7 +82,8 @@
                             required>
                             <option value="">-- Chose Role --</option>
                             <option value="superadmin" @selected(old('role') == 'superadmin')>Superadmin</option>
-                            <option value="admin" @selected(old('role') == 'admin')>Admin</option>
+                            <option value="lecture" @selected(old('role') == 'lecture')>Lecture</option>
+                            <option value="student" @selected(old('role') == 'student')>Student</option>
                         </select>
 
                         @error('role')

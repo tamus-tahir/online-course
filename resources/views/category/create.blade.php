@@ -20,6 +20,18 @@
                 @enderror
             </div>
 
+            <div class="mb-3">
+                <label for="icon" class="form-label">
+                    Upload Icon
+                    <span class="text-danger">(Type Image, Max Size 500kb)</span>
+                </label>
+                <input class="form-control" type="file" id="upload" name="icon">
+
+                <img src="{{ asset('backend/img/noimage-landscape.png') }}" alt="" class="w-25 rounded"
+                    id="preview">
+            </div>
+
+
             <a href="{{ route('category.index') }}" class="btn btn-warning">Back</a>
             <button type="submit" class="btn btn-primary">Save</button>
 
@@ -30,6 +42,11 @@
     @endpush
 
     @push('script')
+        <script>
+            $('#upload').on('change', function(event) {
+                $('#preview').attr('src', URL.createObjectURL(event.target.files[0]))
+            })
+        </script>
     @endpush
 
 </x-backend>

@@ -83,7 +83,8 @@
                             required>
                             <option value="">-- Chose Role --</option>
                             <option value="superadmin" @selected($user->role == 'superadmin')>Superadmin</option>
-                            <option value="admin" @selected($user->role == 'admin')>Admin</option>
+                            <option value="lecture" @selected($user->role == 'lecture')>Lecture</option>
+                            <option value="student" @selected($user->role == 'student')>Student</option>
                         </select>
 
                         @error('role')

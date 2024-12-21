@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -40,8 +41,9 @@ class CategoryController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|unique:categories,name',
+            'icon' => 'required|image|mimes:png,jpg,jpeg,svg|max:512'
         ]);
-
+        $validated['icon'] = $request->file('icon')->store('category', 'public');
         $validated['slug'] = Str::slug($request->name);
         Category::create($validated);
         return redirect()->route('category.index')->with('success', successCreateMessage());
@@ -67,7 +69,18 @@ class CategoryController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|unique:categories,name,' .  $category->id,
+            'icon' => 'sometimes|image|mimes:png,jpg,jpeg,svg|max:512'
         ]);
+
+        if ($request->file('icon')) {
+            $path = $request->file('icon')->store('category', 'public');
+            $validated['icon'] = $path;
+            if ($category->icon) {
+                if (Storage::disk('public')->exists($category->icon)) {
+                    Storage::disk('public')->delete($category->icon);
+                }
+            }
+        }
 
         $validated['slug'] = Str::slug($request->name);
         $category->update($validated);
@@ -80,6 +93,11 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
+        if ($category->icon) {
+            if (Storage::disk('public')->exists($category->icon)) {
+                Storage::disk('public')->delete($category->icon);
+            }
+        }
         return redirect()->route('category.index')->with('success', successDeleteMessage());
     }
 }
