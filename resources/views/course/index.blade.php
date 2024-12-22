@@ -32,7 +32,7 @@
                             @if (account()->role == 'superadmin')
                                 <td>{{ $course->user->name }}</td>
                             @endif
-                            <td>
+                            <td class="text-nowrap">
                                 <a href="{{ route('course.show', $course) }}" class="btn btn-info">
                                     <i class='bx bx-show'></i>
                                 </a>

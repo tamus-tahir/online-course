@@ -105,6 +105,16 @@
                         </li>
 
                         <li>
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('home') }}">
+                                <i class='bx bx-home-alt-2'></i>
+                                <span>Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
                             <a class="dropdown-item d-flex align-items-center" href="#" data-bs-toggle="modal"
                                 data-bs-target="#logoutModal">
                                 <i class="bi bi-box-arrow-right"></i>

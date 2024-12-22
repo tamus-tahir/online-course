@@ -9,9 +9,11 @@ use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CourseVideoController;
+use App\Http\Controllers\HomeController;
 
-Route::get('/', [AuthenticatedSessionController::class, 'create'])
-    ->name('login');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/course-detail/{slug}', [HomeController::class, 'detail'])->name('home.detail');
+Route::get('/frequently-asked-questions', [HomeController::class, 'faq'])->name('home.faq');
 
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
