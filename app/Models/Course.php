@@ -20,4 +20,14 @@ class Course extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function courseVideos()
+    {
+        return $this->hasMany(CourseVideo::class);
+    }
+
+    public function courseVideosOrder()
+    {
+        return $this->hasMany(CourseVideo::class)->orderBy('order');
+    }
 }

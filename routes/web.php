@@ -8,6 +8,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CourseController;
+use App\Http\Controllers\CourseVideoController;
 
 Route::get('/', [AuthenticatedSessionController::class, 'create'])
     ->name('login');
@@ -26,6 +27,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::middleware('role:superadmin,lecture')->group(function () {
         Route::resource('/course', CourseController::class);
+
+        Route::get('/coursevideo/{course}/show', [CourseVideoController::class, 'show'])->name('coursevideo.show');
+        Route::get('/coursevideo/{course}/create', [CourseVideoController::class, 'create'])->name('coursevideo.create');
+        Route::post('/coursevideo', [CourseVideoController::class, 'store'])->name('coursevideo.store');
+        Route::get('/coursevideo/{courseVideo}/edit', [CourseVideoController::class, 'edit'])->name('coursevideo.edit');
+        Route::put('/coursevideo/{courseVideo}/update', [CourseVideoController::class, 'update'])->name('coursevideo.update');
+        Route::delete('/coursevideo/{courseVideo}/destroy', [CourseVideoController::class, 'destroy'])->name('coursevideo.destroy');
+        Route::post('/coursevideo/import', [CourseVideoController::class, 'import'])->name('coursevideo.import');
     });
 });
 

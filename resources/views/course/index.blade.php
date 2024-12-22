@@ -33,6 +33,12 @@
                                 <td>{{ $course->user->name }}</td>
                             @endif
                             <td>
+                                <a href="{{ route('course.show', $course) }}" class="btn btn-info">
+                                    <i class='bx bx-show'></i>
+                                </a>
+                                <a href="{{ route('coursevideo.show', $course) }}" class="btn btn-success">
+                                    <i class='bx bx-list-plus'></i>
+                                </a>
                                 <a href="{{ route('course.edit', $course) }}" class="btn btn-warning">
                                     <i class='bx bx-edit'></i>
                                 </a>

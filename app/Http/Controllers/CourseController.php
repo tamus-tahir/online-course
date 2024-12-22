@@ -69,7 +69,12 @@ class CourseController extends Controller
      */
     public function show(Course $course)
     {
-        //
+        $data = [
+            'title' => 'Detail Course',
+            'course' => $course
+        ];
+
+        return view('course.show', $data);
     }
 
     /**
