@@ -35,14 +35,29 @@ class HomeController extends Controller
         return view('home.faq', ['title' => 'Frequently Asked Questions']);
     }
 
-    public function detail($slug)
+    public function detail(Course $course)
     {
-        $course = Course::where('slug', $slug)->first();
         $data = [
             'title' => 'Detail Course',
             'course' =>  $course,
         ];
 
         return view('home.detail', $data);
+    }
+
+    public function filter(Category $category)
+    {
+        $courses = Course::latest()->where('category_id', $category->id);
+
+        if (request('search')) {
+            $courses->where('name', 'like', '%' . request('search') . '%');
+        }
+
+        $data = [
+            'title' => 'Course Category ' . $category->name,
+            'courses' => $courses->paginate(3)->withQueryString(),
+        ];
+
+        return view('home.filter', $data);
     }
 }

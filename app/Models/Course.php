@@ -30,4 +30,9 @@ class Course extends Model
     {
         return $this->hasMany(CourseVideo::class)->orderBy('order');
     }
+
+    public function courseStudent()
+    {
+        return $this->hasMany(CourseStudent::class);
+    }
 }

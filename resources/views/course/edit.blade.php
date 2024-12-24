@@ -28,7 +28,7 @@
                             Description <span class="text-danger">*</span>
                         </label>
                         <textarea class="form-control tinymce-editor @error('description') is-invalid @enderror " id="description"
-                            name="description" cols="30" rows="10"{!! old('description', $course->description) !!}></textarea>
+                            name="description" cols="30" rows="10">{!! old('description', $course->description) !!}</textarea>
                         @error('description')
                             <div class="invalid-feedback">
                                 {{ $message }}

@@ -46,6 +46,39 @@
         .footer .footer-newsletter .newsletter-form input[type="text"]:focus-visible {
             outline: none;
         }
+
+        .btn-read-more {
+            background: var(--accent-color);
+            color: var(--contrast-color);
+            font-family: var(--heading-font);
+            font-weight: 500;
+            font-size: 16px;
+            letter-spacing: 1px;
+            padding: 12px 24px;
+            border-radius: 5px;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-read-more i {
+            font-size: 18px;
+            margin-left: 5px;
+            line-height: 0;
+            transition: 0.3s;
+        }
+
+        .btn-read-more:hover {
+            background: color-mix(in srgb, var(--accent-color), transparent 20%);
+            padding-right: 19px;
+            color: white;
+            font-weight: bold;
+        }
+
+        .btn-read-more:hover i {
+            margin-left: 10px;
+        }
     </style>
 
     <!-- =======================================================
@@ -62,7 +95,7 @@
     <header id="header" class="header d-flex align-items-center fixed-top">
         <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-            <a href="index.html" class="logo d-flex align-items-center">
+            <a href="{{ route('home') }}" class="logo d-flex align-items-center">
                 <!-- Uncomment the line below if you also wish to use an image logo -->
                 <img src="{{ $setting->icon ? asset('storage/' . $setting->icon) : asset('backend/img/logo.png') }}"
                     alt="">
@@ -206,6 +239,7 @@
     $@stack('modal')
 
     <!-- Vendor JS Files -->
+    <script src="{{ asset('backend/vendor/jquery/jquery-3.7.1.min.js') }}"></script>
     <script src="{{ asset('frontend/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('frontend/vendor/php-email-form/validate.js') }}"></script>
     <script src="{{ asset('frontend/vendor/aos/aos.js') }}"></script>

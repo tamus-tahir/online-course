@@ -43,6 +43,17 @@
                     </table>
 
 
+                    @if (account())
+                        <button type="button" class="btn btn-read-more" data-bs-toggle="modal"
+                            data-bs-target="#subscribeModal">
+                            Subscribe
+                        </button>
+                    @else
+                        <a href="{{ route('login') }}" class="btn btn-read-more">
+                            Subscribe
+                        </a>
+                    @endif
+
                 </div>
             </div>
 
@@ -64,9 +75,73 @@
     </section>
 
     @push('modal')
+        <div class="modal fade" id="subscribeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Subscribe Course</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <table class="table">
+                            <tr>
+                                <td width="160">Price</td>
+                                <td width="3">:</td>
+                                <td>Rp. {{ number_format($course->price) }}</td>
+                            </tr>
+                            <tr>
+                                <td>Bank</td>
+                                <td>:</td>
+                                <td>BNI</td>
+                            </tr>
+                            <tr>
+                                <td>Name</td>
+                                <td>:</td>
+                                <td>Tamus Tahir</td>
+                            </tr>
+                            <tr>
+                                <td>Account Number</td>
+                                <td>:</td>
+                                <td>07878508833</td>
+                            </tr>
+                        </table>
+
+
+                        <form action="{{ route('course-student.store') }}" method="post" enctype="multipart/form-data">
+                            @csrf
+
+                            <div class="mb-3">
+                                <label for="proof" class="form-label">
+                                    Upload Proof
+                                    <span class="text-danger">(Type Image, Max Size 500kb)</span>
+                                </label>
+                                <input class="form-control" type="file" id="upload" name="proof">
+
+                                <img src="{{ asset('backend/img/noimage-landscape.png') }}" alt=""
+                                    class="w-100 rounded" id="preview">
+                            </div>
+
+                            <input type="hidden" name="slug" value="{{ $course->slug }}">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Save</button>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     @endpush
 
     @push('script')
+        <script>
+            $('#upload').on('change', function(event) {
+                $('#preview').attr('src', URL.createObjectURL(event.target.files[0]))
+            })
+        </script>
     @endpush
 
 </x-frontend>

@@ -173,6 +173,23 @@
                     </a>
                 </li>
             @endif
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ route('course-student.index') }}">
+                    <i class='bx bx-wallet-alt'></i>
+                    <span>Subscribe</span>
+                </a>
+            </li>
+
+            @if (account()->role == 'superadmin' || account()->role == 'lecture')
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="{{ route('report.index') }}">
+                        <i class='bx bxs-report'></i>
+                        <span>Report</span>
+                    </a>
+                </li>
+            @endif
+
         </ul>
 
     </aside><!-- End Sidebar-->
@@ -236,7 +253,13 @@
     <!-- datatables -->
     <script src="{{ asset('backend/vendor/datatables/dataTables.js') }}"></script>
     <script src="{{ asset('backend/vendor/datatables/dataTables.bootstrap5.js') }}"></script>
-
+    <script src="https://cdn.datatables.net/buttons/3.2.0/js/dataTables.buttons.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.2.0/js/buttons.dataTables.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.2.0/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.2.0/js/buttons.print.min.js"></script>
 
     <script src="{{ asset('backend/vendor/chart.js/chart.umd.js') }}"></script>
     <script src="{{ asset('backend/vendor/echarts/echarts.min.js') }}"></script>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\CourseStudent;
 use App\Models\Setting;
 use Illuminate\Support\Facades\Auth;
 
@@ -26,4 +27,14 @@ function getSetting()
 function account()
 {
   return Auth::user();
+}
+
+function getCountStudentCourse($id)
+{
+  return CourseStudent::where('course_id', $id)->where('status', 1)->count();
+}
+
+function getSumIncome($id)
+{
+  return CourseStudent::where('course_id', $id)->where('status', 1)->sum('ammount');
 }

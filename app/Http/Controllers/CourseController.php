@@ -15,7 +15,6 @@ class CourseController extends Controller
      */
     public function index()
     {
-
         if (account()->role == 'superadmin') {
             $courses = Course::latest()->get();
         } else {

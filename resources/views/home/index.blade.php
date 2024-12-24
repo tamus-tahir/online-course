@@ -15,7 +15,8 @@
                     <div class="col-lg-3 col-md-4" data-aos="fade-up" data-aos-delay="{{ $delay }}">
                         <div class="features-item">
                             <img src="{{ asset('storage/' . $category->icon) }}" alt="" width="30">
-                            <h3><a href="" class="stretched-link ms-2">{{ $category->name }}</a></h3>
+                            <h3><a href="{{ route('home.filter', $category->slug) }}"
+                                    class="stretched-link ms-2">{{ $category->name }}</a></h3>
                         </div>
                     </div>
                     @php
@@ -29,7 +30,7 @@
     </section>
     <!-- /Category Section -->
 
-    <footer id="footer" class="footer container ">
+    <footer id="footer" class="footer container " data-aos="fade-up" data-aos-delay="100">
 
         <div class="footer-newsletter">
             <form>
@@ -62,7 +63,7 @@
                                 <h4>{{ $course->name }}</h4>
                                 <span>Rp. {{ number_format($course->price) }}</span>
                                 <div class="text-end">
-                                    <a href="{{ route('home.detail', $course->slug) }}">Detail</a>
+                                    <a href="{{ route('home.detail', $course->slug) }}" class="btn-read-more">Detail</a>
                                 </div>
                             </div>
                         </div>
@@ -84,11 +85,12 @@
     <!-- Stats Section -->
     <section id="stats" class="stats section light-background">
 
-        <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="container">
 
             <div class="row gy-4">
 
-                <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
+                <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center" data-aos="fade-up"
+                    data-aos-delay="100">
                     <i class="bi bi-emoji-smile"></i>
                     <div class="stats-item">
                         <span data-purecounter-start="0" data-purecounter-end="{{ $countCategory }}"
@@ -97,7 +99,8 @@
                     </div>
                 </div><!-- End Stats Item -->
 
-                <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
+                <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center" data-aos="fade-up"
+                    data-aos-delay="200">
                     <i class="bi bi-journal-richtext"></i>
                     <div class="stats-item">
                         <span data-purecounter-start="0" data-purecounter-end="{{ $countCourse }}"
@@ -106,7 +109,8 @@
                     </div>
                 </div><!-- End Stats Item -->
 
-                <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
+                <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center" data-aos="fade-up"
+                    data-aos-delay="300">
                     <i class="bi bi-headset"></i>
                     <div class="stats-item">
                         <span data-purecounter-start="0" data-purecounter-end="{{ $countLecture }}"
@@ -115,7 +119,8 @@
                     </div>
                 </div><!-- End Stats Item -->
 
-                <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center">
+                <div class="col-lg-3 col-md-6 d-flex flex-column align-items-center" data-aos="fade-up"
+                    data-aos-delay="400">
                     <i class="bi bi-people"></i>
                     <div class="stats-item">
                         <span data-purecounter-start="0" data-purecounter-end="{{ $countStudent }}"
